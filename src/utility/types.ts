@@ -10,9 +10,15 @@ export interface Person {
   firstName: string;
   lastName: string;
   email: string;
-  friends: Array<Person>;
+  friends: Array<number>;
 }
 
 export interface TableProps {
   people: Array<Person>;
+  showFriends: boolean;
+}
+
+export interface FriendsModalProps {
+  isOpen: boolean;
+  toggle: Handler;
 }
