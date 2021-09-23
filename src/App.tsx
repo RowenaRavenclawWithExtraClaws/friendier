@@ -4,13 +4,25 @@ import AppTitle from "./components/appTitle";
 import CustomButton from "./components/customButton";
 import { Col, Row } from "reactstrap";
 import CustomCard from "./components/customCard";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsOpen, setIsOpen } from "./redux/isFriendsModalOpenSlice";
+import FriendsModal from "./components/friendsModal";
 
-function App() {
+const App = () => {
+  const isFriendsModalOpen = useSelector(selectIsOpen) as boolean;
+  const dispatch = useDispatch();
+
   const buttons = [
-    { text: "Add person", styleClass: "btn-primary", handler: () => {} },
+    {
+      text: "Add person",
+      styleClass: "btn-primary",
+      handler: () => {},
+    },
     { text: "Make friends", styleClass: "btn-primary", handler: () => {} },
     { text: "Find connections", styleClass: "btn-primary", handler: () => {} },
   ];
+
+  const toggleFriendsModal = () => dispatch(setIsOpen(!isFriendsModalOpen));
 
   return (
     <div className="app">
@@ -28,9 +40,15 @@ function App() {
           ))}
         </Row>
         <CustomCard />
+        {isFriendsModalOpen ? (
+          <FriendsModal
+            isOpen={isFriendsModalOpen}
+            toggle={toggleFriendsModal}
+          />
+        ) : null}
       </div>
     </div>
   );
-}
+};
 
 export default App;
