@@ -56,3 +56,18 @@
   font-size: large;
   color: #dfe4ea;
 }
+
+.moda-header {
+  background-color: "#2f3542";
+  border-color: "#2f3542";
+  color: "#dfe4ea";
+}
+
+.moda-body {
+  background-color: "#2f3542";
+}
+
+.moda-footer {
+  background-color: "#2f3542";
+  border-color: "#2f3542";
+}
