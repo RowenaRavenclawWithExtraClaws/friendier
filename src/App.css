@@ -23,6 +23,10 @@
   color: white;
 }
 
+.app-title {
+  margin-top: 1rem;
+}
+
 .app-link {
   color: #61dafb;
 }
@@ -34,4 +38,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.custom-button {
+  margin-left: 10rem;
+}
+
+.button-row {
+  width: 100%;
+}
+
+.th-font-size {
+  font-size: large;
+}
+
+.th-font-size {
+  font-size: large;
+  color: #dfe4ea;
 }
