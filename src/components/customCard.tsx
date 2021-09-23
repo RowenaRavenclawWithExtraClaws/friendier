@@ -20,7 +20,7 @@ const CustomCard = () => {
         <CardSubtitle tag="h6" className="mb-2 text-muted">
           shows all people registered in the system
         </CardSubtitle>
-        <CustomTable people={people} />
+        <CustomTable people={people} showFriends />
       </CardBody>
     </Card>
   );
