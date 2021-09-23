@@ -32,10 +32,17 @@ export const peopleSlice = createSlice({
     setPeople: (state, action) => {
       state.value.people = action.payload;
     },
+    addPerson: (state, action) => {
+      const tempPeople = state.value.people;
+
+      tempPeople.push(action.payload);
+
+      state.value.people = tempPeople;
+    },
   },
 });
 
-export const { setPeople } = peopleSlice.actions;
+export const { setPeople, addPerson } = peopleSlice.actions;
 
 export const selectPeople = (state) => state.people.value.people;
 
