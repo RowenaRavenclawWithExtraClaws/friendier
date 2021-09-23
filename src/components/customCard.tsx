@@ -1,25 +1,11 @@
+import { useSelector } from "react-redux";
 import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
+import { selectPeople } from "../redux/peopleSlice";
 import { Person } from "../utility/types";
 import CustomTable from "./customTable";
 
 const CustomCard = () => {
-  const people = [
-    {
-      firstName: "Bobby",
-      lastName: "Fischer",
-      email: "bobby.fish@yahoo.com",
-    } as Person,
-    {
-      firstName: "Vishwanathan",
-      lastName: "Anand",
-      email: "vishy.anand@gmail.com",
-    } as Person,
-    {
-      firstName: "Paul",
-      lastName: "Morphy",
-      email: "paul.kinggambit@yahoo.com",
-    } as Person,
-  ];
+  const people = useSelector(selectPeople) as Array<Person>;
 
   return (
     <Card
