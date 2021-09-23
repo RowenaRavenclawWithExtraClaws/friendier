@@ -1,5 +1,6 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "toastr/build/toastr.min.css";
 import AppTitle from "./components/appTitle";
 import CustomButton from "./components/customButton";
 import { Col, Row } from "reactstrap";
@@ -12,16 +13,24 @@ import {
 } from "./redux/isAddPersonModalOpenSlice";
 import FriendsModal from "./components/friendsModal";
 import AddPersonModal from "./components/addPersonModal";
+import {
+  selectConnectModalIsOpen,
+  setConnectModalIsOpen,
+} from "./redux/isConnectModalOpenSlice";
+import ConnectModal from "./components/connectModel";
 
 const App = () => {
-  const isFriendsModalOpen = useSelector(selectIsOpen) as boolean;
-  const isAddPersonModalOpen = useSelector(selectAddModalIsOpen) as boolean;
+  const isFriendsModalOpen: boolean = useSelector(selectIsOpen);
+  const isAddPersonModalOpen: boolean = useSelector(selectAddModalIsOpen);
+  const isConnectionModalOpen: boolean = useSelector(selectConnectModalIsOpen);
 
   const dispatch = useDispatch();
 
   const toggleFriendsModal = () => dispatch(setIsOpen(!isFriendsModalOpen));
   const toggleAddPersonModal = () =>
     dispatch(setAddModalIsOpen(!isAddPersonModalOpen));
+  const toggleConnectModal = () =>
+    dispatch(setConnectModalIsOpen(!isConnectionModalOpen));
 
   const buttons = [
     {
@@ -29,7 +38,11 @@ const App = () => {
       styleClass: "btn-primary",
       handler: toggleAddPersonModal,
     },
-    { text: "Make friends", styleClass: "btn-primary", handler: () => {} },
+    {
+      text: "Connect people",
+      styleClass: "btn-primary",
+      handler: toggleConnectModal,
+    },
     { text: "Find connections", styleClass: "btn-primary", handler: () => {} },
   ];
 
@@ -59,6 +72,12 @@ const App = () => {
           <AddPersonModal
             isOpen={isAddPersonModalOpen}
             toggle={toggleAddPersonModal}
+          />
+        ) : null}
+        {isConnectionModalOpen ? (
+          <ConnectModal
+            isOpen={isConnectionModalOpen}
+            toggle={toggleConnectModal}
           />
         ) : null}
       </div>
