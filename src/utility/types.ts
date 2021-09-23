@@ -1,4 +1,5 @@
 type Handler = () => void;
+type HandlerWithParam = (param: string) => void;
 
 export interface ButtonProps {
   text: string;
@@ -18,7 +19,13 @@ export interface TableProps {
   showFriends: boolean;
 }
 
-export interface FriendsModalProps {
+export interface ModalProps {
   isOpen: boolean;
   toggle: Handler;
+}
+
+export interface FormProps {
+  emailSetter: HandlerWithParam;
+  firstNameSetter: HandlerWithParam;
+  lastNameSetter: HandlerWithParam;
 }
