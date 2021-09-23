@@ -6,23 +6,32 @@ import { Col, Row } from "reactstrap";
 import CustomCard from "./components/customCard";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsOpen, setIsOpen } from "./redux/isFriendsModalOpenSlice";
+import {
+  selectAddModalIsOpen,
+  setAddModalIsOpen,
+} from "./redux/isAddPersonModalOpenSlice";
 import FriendsModal from "./components/friendsModal";
+import AddPersonModal from "./components/addPersonModal";
 
 const App = () => {
   const isFriendsModalOpen = useSelector(selectIsOpen) as boolean;
+  const isAddPersonModalOpen = useSelector(selectAddModalIsOpen) as boolean;
+
   const dispatch = useDispatch();
+
+  const toggleFriendsModal = () => dispatch(setIsOpen(!isFriendsModalOpen));
+  const toggleAddPersonModal = () =>
+    dispatch(setAddModalIsOpen(!isAddPersonModalOpen));
 
   const buttons = [
     {
       text: "Add person",
       styleClass: "btn-primary",
-      handler: () => {},
+      handler: toggleAddPersonModal,
     },
     { text: "Make friends", styleClass: "btn-primary", handler: () => {} },
     { text: "Find connections", styleClass: "btn-primary", handler: () => {} },
   ];
-
-  const toggleFriendsModal = () => dispatch(setIsOpen(!isFriendsModalOpen));
 
   return (
     <div className="app">
@@ -44,6 +53,12 @@ const App = () => {
           <FriendsModal
             isOpen={isFriendsModalOpen}
             toggle={toggleFriendsModal}
+          />
+        ) : null}
+        {isAddPersonModalOpen ? (
+          <AddPersonModal
+            isOpen={isAddPersonModalOpen}
+            toggle={toggleAddPersonModal}
           />
         ) : null}
       </div>
