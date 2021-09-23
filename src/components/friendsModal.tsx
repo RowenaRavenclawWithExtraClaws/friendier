@@ -2,13 +2,13 @@ import { useSelector } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { selectPerson } from "../redux/personSlice";
 import { modalStyle } from "../utility/styles";
-import { FriendsModalProps, Person } from "../utility/types";
+import { ModalProps, Person } from "../utility/types";
 import { getFriends } from "../utility/helpers";
 import CustomButton from "./customButton";
 import CustomTable from "./customTable";
 import { selectPeople } from "../redux/peopleSlice";
 
-const FriendsModal = (props: FriendsModalProps) => {
+const FriendsModal = (props: ModalProps) => {
   const person: Person = useSelector(selectPerson);
   const people: Array<Person> = useSelector(selectPeople);
 
@@ -19,10 +19,10 @@ const FriendsModal = (props: FriendsModalProps) => {
       <ModalHeader
         style={modalStyle}
       >{`${person.firstName} ${person.lastName}`}</ModalHeader>
-      <ModalBody style={modalStyle} className="moda-body">
+      <ModalBody style={modalStyle}>
         <CustomTable people={friends} showFriends={false} />
       </ModalBody>
-      <ModalFooter style={modalStyle} className="moda-footer">
+      <ModalFooter style={modalStyle}>
         <CustomButton
           text="Cancel"
           styleClass="btn-secondary"
