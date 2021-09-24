@@ -1,5 +1,5 @@
 import { InputGroup, InputGroupAddon, InputGroupText, Input } from "reactstrap";
-import { FormProps } from "../utility/types";
+import { FormProps } from "../../utility/types";
 
 const ConnectForm = (props: FormProps) => {
   return (
