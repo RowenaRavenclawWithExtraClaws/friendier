@@ -20,7 +20,11 @@ const FriendsModal = (props: ModalProps) => {
         style={modalStyle}
       >{`${person.firstName} ${person.lastName}`}</ModalHeader>
       <ModalBody style={modalStyle}>
-        <CustomTable people={friends} showFriends={false} />
+        {friends.length ? (
+          <CustomTable people={friends} showFriends={false} />
+        ) : (
+          <h3 className="app">{person.firstName} has no friends!</h3>
+        )}
       </ModalBody>
       <ModalFooter style={modalStyle}>
         <CustomButton
