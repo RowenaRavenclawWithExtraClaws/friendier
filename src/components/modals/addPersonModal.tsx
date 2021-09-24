@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { addPerson, selectPeople } from "../redux/peopleSlice";
-import { findPersonIndxByEmail, Notify } from "../utility/helpers";
-import { modalStyle } from "../utility/styles";
-import { ModalProps } from "../utility/types";
-import AddPersonForm from "./addPersonForm";
-import CustomButton from "./customButton";
+import { addPerson, selectPeople } from "../../redux/peopleSlice";
+import { findPersonIndxByEmail, Notify } from "../../utility/helpers";
+import { modalStyle } from "../../utility/styles";
+import { ModalProps } from "../../utility/types";
+import AddPersonForm from "../forms/addPersonForm";
+import CustomButton from "../customButton";
 
 const AddPersonModal = (props: ModalProps) => {
   const [email, setEmail] = useState("");

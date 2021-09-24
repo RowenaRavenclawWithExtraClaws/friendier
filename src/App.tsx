@@ -11,18 +11,18 @@ import {
   selectAddModalIsOpen,
   setAddModalIsOpen,
 } from "./redux/isAddPersonModalOpenSlice";
-import FriendsModal from "./components/friendsModal";
-import AddPersonModal from "./components/addPersonModal";
+import FriendsModal from "./components/modals/friendsModal";
+import AddPersonModal from "./components/modals/addPersonModal";
 import {
   selectConnectModalIsOpen,
   setConnectModalIsOpen,
 } from "./redux/isConnectModalOpenSlice";
-import ConnectModal from "./components/connectModel";
+import ConnectModal from "./components/modals/connectModel";
 import {
   selectFindModalIsOpen,
   setFindModalIsOpen,
 } from "./redux/isFindModalOpenSlice";
-import FindModal from "./components/findModal";
+import FindModal from "./components/modals/findModal";
 
 const App = () => {
   const isFriendsModalOpen: boolean = useSelector(selectIsOpen);

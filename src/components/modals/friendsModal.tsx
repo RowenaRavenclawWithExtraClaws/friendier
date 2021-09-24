@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { selectPerson } from "../redux/personSlice";
-import { modalStyle } from "../utility/styles";
-import { ModalProps, Person } from "../utility/types";
-import { getFriends } from "../utility/helpers";
-import CustomButton from "./customButton";
-import CustomTable from "./customTable";
-import { selectPeople } from "../redux/peopleSlice";
+import { selectPerson } from "../../redux/personSlice";
+import { modalStyle } from "../../utility/styles";
+import { ModalProps, Person } from "../../utility/types";
+import { getFriends } from "../../utility/helpers";
+import CustomButton from "../customButton";
+import CustomTable from "../customTable";
+import { selectPeople } from "../../redux/peopleSlice";
 
 const FriendsModal = (props: ModalProps) => {
   const person: Person = useSelector(selectPerson);

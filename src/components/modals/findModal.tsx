@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { selectPeople } from "../redux/peopleSlice";
-import { findConnetion, findPersonIndxByEmail } from "../utility/helpers";
-import { modalStyle } from "../utility/styles";
-import { ModalProps, Person } from "../utility/types";
-import ConnectForm from "./connectForm";
-import CustomButton from "./customButton";
+import { selectPeople } from "../../redux/peopleSlice";
+import { findConnetion, findPersonIndxByEmail } from "../../utility/helpers";
+import { modalStyle } from "../../utility/styles";
+import { ModalProps, Person } from "../../utility/types";
+import ConnectForm from "../forms/connectForm";
+import CustomButton from "../customButton";
 
 const FindModal = (props: ModalProps) => {
   const [email1, setEmail1] = useState("");
