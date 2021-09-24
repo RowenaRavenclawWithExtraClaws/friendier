@@ -26,7 +26,7 @@ const FindModal = (props: ModalProps) => {
       const connection = findConnetion(people, personIndx1, personIndx2);
 
       if (connection.length) setConnection([...connection]);
-      else setMessage("No connection found, maybe you entered wrong emails!");
+      else setMessage("No connection found!");
     } else {
       setConnection([]);
       setMessage("No connection found, maybe you entered wrong emails!");
