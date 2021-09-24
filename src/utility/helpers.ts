@@ -16,7 +16,7 @@ export const findPersonIndxByEmail = (people: Array<Person>, email: string) => {
   return personIndx;
 };
 
-export const findConnetions = (
+export const findConnetion = (
   people: Array<Person>,
   personIndx1: number,
   personIndx2: number
@@ -47,7 +47,8 @@ export const findConnetions = (
     i -= 1;
   }
 
-  return [connections[i], ...connection];
+  if (connection.length) return [connections[i], ...connection];
+  return connection;
 };
 
 // display notification banner

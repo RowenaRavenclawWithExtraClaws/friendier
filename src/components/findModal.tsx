@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { selectPeople } from "../redux/peopleSlice";
-import { findConnetions, findPersonIndxByEmail } from "../utility/helpers";
+import { findConnetion, findPersonIndxByEmail } from "../utility/helpers";
 import { modalStyle } from "../utility/styles";
 import { ModalProps, Person } from "../utility/types";
 import ConnectForm from "./connectForm";
@@ -17,6 +17,21 @@ const FindModal = (props: ModalProps) => {
 
   const setFirstEmail = (email1: string) => setEmail1(email1);
   const setSecondEmail = (email2: string) => setEmail2(email2);
+
+  const findConnectionHandler = () => {
+    const personIndx1 = findPersonIndxByEmail(people, email1);
+    const personIndx2 = findPersonIndxByEmail(people, email2);
+
+    if (personIndx1 !== -1 && personIndx2 !== -1) {
+      const connection = findConnetion(people, personIndx1, personIndx2);
+
+      if (connection.length) setConnection([...connection]);
+      else setMessage("No connection found, maybe you entered wrong emails!");
+    } else {
+      setConnection([]);
+      setMessage("No connection found, maybe you entered wrong emails!");
+    }
+  };
 
   return (
     <Modal isOpen={props.isOpen}>
@@ -55,21 +70,7 @@ const FindModal = (props: ModalProps) => {
         <CustomButton
           text="Find"
           styleClass="btn-primary"
-          handler={() => {
-            const personIndx1 = findPersonIndxByEmail(people, email1);
-            const personIndx2 = findPersonIndxByEmail(people, email2);
-
-            if (personIndx1 !== -1 && personIndx2 !== -1)
-              setConnection([
-                ...findConnetions(people, personIndx1, personIndx2),
-              ]);
-            else {
-              setConnection([]);
-              setMessage(
-                "No connection found, maybe you entered wrong emails!"
-              );
-            }
-          }}
+          handler={findConnectionHandler}
         />
         <CustomButton
           text="Cancel"
