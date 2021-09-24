@@ -4,6 +4,7 @@ import personReducer from "./personSlice";
 import isFriendsModalOpenReducer from "./isFriendsModalOpenSlice";
 import isAddPersonModalOpenReducer from "./isAddPersonModalOpenSlice";
 import isConnectModalOpenReducer from "./isConnectModalOpenSlice";
+import isFindModalOpenReducer from "./isFindModalOpenSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     isFriendModalOpen: isFriendsModalOpenReducer,
     isAddPersonModalOpen: isAddPersonModalOpenReducer,
     isConnectModalOpen: isConnectModalOpenReducer,
+    isFindModalOpen: isFindModalOpenReducer,
   },
 });
 
