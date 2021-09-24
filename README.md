@@ -34,11 +34,15 @@ Just clone the repo and run `npm install` followed by `npm start`
 
 - FormProps `{ emailSetter: HandlerWithParam; firstNameSetter: HandlerWithParam; lastNameSetter: HandlerWithParam; }`
 
-## Components structure
+## App structure
+
+![app-arch](https://github.com/RowenaRavenclawWithExtraClaws/friendier/blob/main/assets/ui-components.png)
 
 ## Core feature (Find connections)
 
 Finding connections between two people is the main purpose of this app. Using the depth-first traversal algorithm, the app can find a connection between any two people using their emails. Here is the people's graph you will find in the app:
+
+![people-graph](https://github.com/RowenaRavenclawWithExtraClaws/friendier/blob/main/assets/people-graph.png)
 
 ## Downsides
 
