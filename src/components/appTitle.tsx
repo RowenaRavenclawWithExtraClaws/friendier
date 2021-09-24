@@ -1,5 +1,5 @@
 const AppTitle = () => {
-  return <h1 className="app-title">Connection Finder</h1>;
+  return <h1 className="app-title">Friendier</h1>;
 };
 
 export default AppTitle;
