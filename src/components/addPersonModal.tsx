@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { addPerson } from "../redux/peopleSlice";
+import { Notify } from "../utility/helpers";
 import { modalStyle } from "../utility/styles";
 import { ModalProps } from "../utility/types";
 import AddPersonForm from "./addPersonForm";
@@ -19,14 +20,20 @@ const AddPersonModal = (props: ModalProps) => {
   const setPersonLastName = (lastName: string) => setLastName(lastName);
 
   const addNewPerson = () => {
-    dispatch(
-      addPerson({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        friends: [],
-      })
-    );
+    if (firstName.length && lastName.length && email.length) {
+      dispatch(
+        addPerson({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          friends: [],
+        })
+      );
+
+      return true;
+    }
+
+    return false;
   };
 
   return (
@@ -44,8 +51,11 @@ const AddPersonModal = (props: ModalProps) => {
           text="Add"
           styleClass="btn-primary"
           handler={() => {
-            addNewPerson();
-            props.toggle();
+            if (addNewPerson()) {
+              Notify("A new person is added", "Congrats", "success");
+              props.toggle();
+            } else
+              Notify("One or all the fields are empty", "Warning", "warning");
           }}
         />
         <CustomButton

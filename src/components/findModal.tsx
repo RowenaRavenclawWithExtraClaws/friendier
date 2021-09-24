@@ -11,6 +11,7 @@ import CustomButton from "./customButton";
 const FindModal = (props: ModalProps) => {
   const [email1, setEmail1] = useState("");
   const [email2, setEmail2] = useState("");
+  const [message, setMessage] = useState("");
   const [connection, setConnection] = useState([] as Array<number>);
   const people: Array<Person> = useSelector(selectPeople);
 
@@ -45,6 +46,8 @@ const FindModal = (props: ModalProps) => {
                   } ${indx < connection.length - 1 ? "--> " : ""} `
               )}
             </p>
+          ) : message.length ? (
+            <p style={{ textAlign: "center" }}>{message}</p>
           ) : null}
         </div>
       </ModalBody>
@@ -56,9 +59,16 @@ const FindModal = (props: ModalProps) => {
             const personIndx1 = findPersonIndxByEmail(people, email1);
             const personIndx2 = findPersonIndxByEmail(people, email2);
 
-            setConnection([
-              ...findConnetions(people, personIndx1, personIndx2),
-            ]);
+            if (personIndx1 !== -1 && personIndx2 !== -1)
+              setConnection([
+                ...findConnetions(people, personIndx1, personIndx2),
+              ]);
+            else {
+              setConnection([]);
+              setMessage(
+                "No connection found, maybe you entered wrong emails!"
+              );
+            }
           }}
         />
         <CustomButton

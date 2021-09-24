@@ -17,13 +17,19 @@ const ConnectModal = (props: ModalProps) => {
   const setFirstEmail = (email1: string) => setEmail1(email1);
   const setSecondEmail = (email2: string) => setEmail2(email2);
 
-  const makeFriends = () =>
-    dispatch(
-      connectPeople({
-        email1: email1,
-        email2: email2,
-      })
-    );
+  const makeFriends = () => {
+    if (email1.length && email2.length && email1 !== email2) {
+      dispatch(
+        connectPeople({
+          email1: email1,
+          email2: email2,
+        })
+      );
+
+      return true;
+    }
+    return false;
+  };
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggle}>
@@ -45,9 +51,15 @@ const ConnectModal = (props: ModalProps) => {
           text="Make friends"
           styleClass="btn-primary"
           handler={() => {
-            makeFriends();
-            Notify("You make two people friends 👏", "Congrats", "success");
-            props.toggle();
+            if (makeFriends()) {
+              Notify("You made two people friends 👏", "Congrats", "success");
+              props.toggle();
+            } else
+              Notify(
+                "One or all the fields are empty or the the emails are the same",
+                "Warning",
+                "warning"
+              );
           }}
         />
         <CustomButton

@@ -47,13 +47,18 @@ export const peopleSlice = createSlice({
         tempPeople,
         action.payload.email1
       );
+
       const personIndx2 = findPersonIndxByEmail(
         tempPeople,
         action.payload.email2
       );
 
-      tempPeople[personIndx1].friends.push(personIndx2);
-      tempPeople[personIndx2].friends.push(personIndx1);
+      if (personIndx1 !== -1 && personIndx2 !== -1) {
+        if (tempPeople[personIndx1].friends.indexOf(personIndx2) === -1) {
+          tempPeople[personIndx1].friends.push(personIndx2);
+          tempPeople[personIndx2].friends.push(personIndx1);
+        }
+      }
 
       state.value.people = tempPeople;
     },
