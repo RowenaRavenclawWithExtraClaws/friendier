@@ -18,11 +18,17 @@ import {
   setConnectModalIsOpen,
 } from "./redux/isConnectModalOpenSlice";
 import ConnectModal from "./components/connectModel";
+import {
+  selectFindModalIsOpen,
+  setFindModalIsOpen,
+} from "./redux/isFindModalOpenSlice";
+import FindModal from "./components/findModal";
 
 const App = () => {
   const isFriendsModalOpen: boolean = useSelector(selectIsOpen);
   const isAddPersonModalOpen: boolean = useSelector(selectAddModalIsOpen);
-  const isConnectionModalOpen: boolean = useSelector(selectConnectModalIsOpen);
+  const isConnectModalOpen: boolean = useSelector(selectConnectModalIsOpen);
+  const isFindModalOpen: boolean = useSelector(selectFindModalIsOpen);
 
   const dispatch = useDispatch();
 
@@ -30,7 +36,8 @@ const App = () => {
   const toggleAddPersonModal = () =>
     dispatch(setAddModalIsOpen(!isAddPersonModalOpen));
   const toggleConnectModal = () =>
-    dispatch(setConnectModalIsOpen(!isConnectionModalOpen));
+    dispatch(setConnectModalIsOpen(!isConnectModalOpen));
+  const toggleFindModal = () => dispatch(setFindModalIsOpen(!isFindModalOpen));
 
   const buttons = [
     {
@@ -43,7 +50,11 @@ const App = () => {
       styleClass: "btn-primary",
       handler: toggleConnectModal,
     },
-    { text: "Find connections", styleClass: "btn-primary", handler: () => {} },
+    {
+      text: "Find connections",
+      styleClass: "btn-primary",
+      handler: toggleFindModal,
+    },
   ];
 
   return (
@@ -74,11 +85,14 @@ const App = () => {
             toggle={toggleAddPersonModal}
           />
         ) : null}
-        {isConnectionModalOpen ? (
+        {isConnectModalOpen ? (
           <ConnectModal
-            isOpen={isConnectionModalOpen}
+            isOpen={isConnectModalOpen}
             toggle={toggleConnectModal}
           />
+        ) : null}
+        {isFindModalOpen ? (
+          <FindModal isOpen={isFindModalOpen} toggle={toggleFindModal} />
         ) : null}
       </div>
     </div>
