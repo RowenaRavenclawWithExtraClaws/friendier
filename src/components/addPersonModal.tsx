@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { addPerson } from "../redux/peopleSlice";
-import { Notify } from "../utility/helpers";
+import { addPerson, selectPeople } from "../redux/peopleSlice";
+import { findPersonIndxByEmail, Notify } from "../utility/helpers";
 import { modalStyle } from "../utility/styles";
 import { ModalProps } from "../utility/types";
 import AddPersonForm from "./addPersonForm";
@@ -13,6 +13,7 @@ const AddPersonModal = (props: ModalProps) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  const people = useSelector(selectPeople);
   const dispatch = useDispatch();
 
   const setPersonEmail = (email: string) => setEmail(email);
@@ -20,7 +21,12 @@ const AddPersonModal = (props: ModalProps) => {
   const setPersonLastName = (lastName: string) => setLastName(lastName);
 
   const addNewPerson = () => {
-    if (firstName.length && lastName.length && email.length) {
+    if (
+      firstName.length &&
+      lastName.length &&
+      email.length &&
+      findPersonIndxByEmail(people, email) === -1
+    ) {
       dispatch(
         addPerson({
           firstName: firstName,
@@ -55,7 +61,11 @@ const AddPersonModal = (props: ModalProps) => {
               Notify("A new person is added", "Congrats", "success");
               props.toggle();
             } else
-              Notify("One or all the fields are empty", "Warning", "warning");
+              Notify(
+                "One or all the fields are empty or email already exists!",
+                "Warning",
+                "warning"
+              );
           }}
         />
         <CustomButton
