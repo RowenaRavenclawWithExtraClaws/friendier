@@ -1,6 +1,6 @@
 # Friendier
 
-Friendier is web app that is designed to connect people together. You can start using the app here https://fiendier.herokuapp.com/
+Friendier is web app that is designed to connect people together. You can start using the app here https://friendier-app.vercel.app
 
 ## Installation and Running
 
